@@ -1,0 +1,201 @@
+body {
+  margin: 0;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+#logo {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+label>input {
+  border-radius: 6px;
+  font-family: Arial;
+  font-size: 30px;
+  max-width: 150px;
+  gap: 10px;
+  margin: 10px;
+}
+
+section>img {
+  width: 100%;
+  height: 20%;
+}
+
+nav>ul>li>a>img {
+  width: 30px;
+}
+
+nav {
+  width: 100%;
+  height: 30px;
+  background-color: #333;
+  padding: 10px 20px;
+}
+
+ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  font-family: Arial, sans-serif;
+  padding: 8px 14px;
+  border-radius: 6px;
+}
+
+a:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  transform: scale(1);
+  color: #ffd700;
+}
+
+main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+article {
+  width: 300px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 15px;
+  margin: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 1);
+  background: #fff;
+  font-family: Arial;
+}
+
+article>h1 {
+  font-size: 20px;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+article>img {
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+article>p {
+  font-size: 14px;
+  line-height: 1.5;
+  color: #555;
+}
+
+article>footer {
+  margin-top: 10px;
+  text-align: right;
+}
+
+article>footer>a {
+  text-decoration: none;
+  color: #007BFF;
+  font-weight: bold;
+}
+
+article>footer>a:hover {
+  text-decoration: underline;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background: white;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 1);
+}
+
+th,
+td {
+  border: 1px solid #ddd;
+  padding: 12px;
+  text-align: center;
+}
+
+th {
+  background-color: #333;
+  color: white;
+  font-weight: bold;
+}
+
+td>img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+main>section>table>tr>td>a {
+  display: flex;
+  color: black;
+  font-weight: bold;
+
+}
+
+main p {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+main a {
+  color: black;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+main a:hover {
+  text-decoration: underline;
+}
+
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+form>label {
+  border-radius: 6px;
+  font-family: Arial;
+  font-size: 20px;
+}
+
+form input[type="text"],
+form select,
+form textarea {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  width: 100%;
+}
+
+/* Botón de enviar */
+form input[type="submit"] {
+  background-color: #333;
+  color: white;
+  border: none;
+  padding: 12px;
+  font-size: 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+
+}
