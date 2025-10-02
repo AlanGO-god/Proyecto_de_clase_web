@@ -12,8 +12,17 @@ switch ($action) {
             $data['institucion'] = $_POST['institucion'];
             $data['logotiopo'] = $_POST['logotipo'];
             $row = $app -> create($data);
+            if($row){
+              $alerta['mensaje'] = "Institucion dad de alta correctamente";
+              $alerta['tipo'] = "success";
+              include_once("./Views/alerta.php");
+            }else{
+              $alerta['mensaje'] = "Error al dar de alta la institucion";
+              $alerta['tipo'] = "danger";
+              include_once("./Views/alerta.php");
+            }
             $data = $app -> read();
-          
+
             include_once("./Views/institucion/index.php");
         }else{ 
              include_once("./Views/institucion/_form.php");
@@ -27,8 +36,17 @@ switch ($action) {
         $data['logotipo'] = $_POST['logotipo'];
         $id = $_GET['id'];
         $row = $app -> update($data, $id);
-        $data = $app -> read();
-        include_once("./Views/institucion/index.php");
+        if($row){
+            $alerta['mensaje'] = "Institucion actualizada correctamente";
+            $alerta['tipo'] = "success";
+            include_once("./Views/alerta.php");            
+        }else{
+            $alerta['mensaje'] = "Error al actualizar la institucion";
+            $alerta['tipo'] = "danger";
+            include_once("./Views/alerta.php");
+            $data = $app -> read();
+            include_once("./Views/institucion/index.php");
+       }
        }else{
         $id = $_GET['id'];
         $data = $app -> readOne($id);
@@ -41,16 +59,25 @@ switch ($action) {
         if(isset($_GET['id'])){
             $id = $_GET['id'];
             $row = $app -> delete($id);
+            if($row){
+                $alerta['mensaje'] = "Institucion eliminada correctamente";
+                $alerta['tipo'] = "success";
+                include_once("./Views/alerta.php");  
+            }else{
+                $alerta['mensaje'] = "Error al eliminar la institucion";
+                $alerta['tipo'] = "danger";
+                include_once("./Views/alerta.php");      
+            }
         }
         $data = $app -> read();
-        include_once("./views/institucion/index.php");
+        include_once("./Views/institucion/index.php");
         break;
     
     case 'read':
     default:
         $data = $app -> read();
-        include_once("./views/institucion/index.php");
+        include_once("./Views/institucion/index.php");
         break;
 }
-include_once("./views/footer.php");
+include_once("./Views/footer.php");
 ?>
