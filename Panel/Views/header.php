@@ -7,7 +7,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary" >
+    <nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark" >
   <div class="container-fluid">
     <a class="navbar-brand" href="instituciones.php">Red de Investigación</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -23,8 +23,9 @@
             Catalogos
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="institucion.php">AcInstituciones</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li><a class="dropdown-item" href="institucion.php">Instituciones</a></li>
+            <li><a class="dropdown-item" href="tratamiento.php">Tratamientos</a></li>
+            <li><a class="dropdown-item" href="investigador.php">Investigadores</a></li>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="#">Something else here</a></li>
           </ul>
