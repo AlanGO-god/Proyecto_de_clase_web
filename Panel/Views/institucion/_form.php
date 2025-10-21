@@ -8,7 +8,7 @@
     <div class="mb-3">
         <label for="logotipo" class="form-label">logotipo</label>
         <input type="text" class="form-contgrol" id="logotipo" name="logotipo"
-         placeholder="anota el nombre del archivo ">
+         placeholder="alogotio.png">
     </div>
     <dic class="mb-3">
         <input type="submit" class="btn btn-success" id="enviar" name="enviar" value="Guardar">

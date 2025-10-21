@@ -23,7 +23,7 @@
             Catalogos
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="institucion.php">Instituciones</a></li>
+            <li><a class="dropdown-item" href="instituciones.php">Instituciones</a></li>
             <li><a class="dropdown-item" href="tratamiento.php">Tratamientos</a></li>
             <li><a class="dropdown-item" href="investigador.php">Investigadores</a></li>
             <li><hr class="dropdown-divider"></li>

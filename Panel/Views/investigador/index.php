@@ -22,13 +22,13 @@
     <tr>
       <th scope="row"><?php echo $investigador['id_investigador']; ?></th>
     </th>
-      <td><img src="/web/web_v2/images/investigadores/<?php echo $investigador['fotografia']; ?>" class="rounded-circle" height="75"></td>
+      <td><img src="../../../image/investigadores/<?php echo $investigador['fotografia']; ?>" class="rounded-circle" height="75"></td>
       <td><?php echo $investigador['primer_apellido']; ?></td>
       <td><?php echo $investigador['segundo_apellido']; ?></td>
       <td><?php echo $investigador['nombre']; ?></td>
-      <td><?php echo $investigador['id_institucion']; ?></td>
+      <td><?php echo $investigador['institucion']; ?></td>
       <td><?php echo substr($investigador['semblance'], 0, 100); ?></td>
-      <td><?php echo $investigador['id_tratamiento']; ?></td>
+      <td><?php echo $investigador['tratamiento']; ?></td>
       <td>
         <div class="btn-group" role="group" aria-label="Basic mixed styles example">
             <a href="investigador.php?action=update&id=<?php echo $investigador['id_investigador']; ?>" class="btn btn-warning">Editar</a>

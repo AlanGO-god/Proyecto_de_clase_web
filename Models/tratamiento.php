@@ -47,7 +47,6 @@ class Tratamiento extends Sistema{
             try {
                 $sql = "UPDATE tratamiento SET tratamiento = :tratamiento WHERE id_tratamiento = :id_tratamiento";
                 $sth = $this->_DB->prepare($sql);
-                $sth = $this->_DB->prepare($sql);
                 $sth -> bindParam(":tratamiento", $data['tratamiento'], PDO::PARAM_STR);
                 $sth -> bindParam(":id_tratamiento", $id, PDO::PARAM_INT);
                 $sth -> execute();

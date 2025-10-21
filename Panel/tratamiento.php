@@ -10,13 +10,13 @@ switch ($action) {
             $data['tratamiento'] = $_POST['tratamiento'];
             $row = $app -> create($data);
             if ($row){
-                $alerta['mensaje'] = "tratamiento dada de alta correctamente";
+                $alerta['mensaje'] = "Tratamiento dada de alta correctamente";
                 $alerta['tipo'] = "success";
-                include_once("./views/alert.php");
+                include_once("./Views/alerta.php");
             }else{
-                $alerta['mensaje'] = "La tratamiento no fue dada de alta";
+                $alerta['mensaje'] = "El tratamiento no fue dada de alta";
                 $alerta['tipo'] = "danger";
-                include_once("./views/alert.php");
+                include_once("./views/alerta.php");
             }
             $data = $app -> read();
             include_once("./views/tratamiento/index.php");
@@ -31,20 +31,20 @@ switch ($action) {
             $id = $_GET['id'];
             $row = $app -> update($data, $id); 
             if ($row){
-                $alerta['mensaje'] = "tratamiento modificada correctamente";
+                $alerta['mensaje'] = "Tratamiento modificada correctamente";
                 $alerta['tipo'] = "success";
-                include_once("./views/alert.php");
+                include_once("./Views/alerta.php");
             }else{
-                $alerta['mensaje'] = "La tratamiento no fue modificada";
+                $alerta['mensaje'] = "El tratamiento no fue modificada";
                 $alerta['tipo'] = "danger";
-                include_once("./views/alert.php");
+                include_once("./Views/alerta.php");
             }
             $data = $app -> read();
             include_once("./views/tratamiento/index.php");
         }else{
             $id = $_GET['id'];
             $data = $app -> readOne($id);
-            include_once(".Vviews/tratamiento/_form_update.php");
+            include_once("./Views/tratamiento/_form_update.php");
         }
         break;
 
@@ -53,13 +53,13 @@ switch ($action) {
             $id = $_GET['id'];
             $row = $app -> delete($id);
             if ($row){
-                $alerta['mensaje'] = "tratamiento eliminada correctamente";
+                $alerta['mensaje'] = "Tratamiento eliminada correctamente";
                 $alerta['tipo'] = "success";
-                include_once("./Views/alert.php");
+                include_once("./Views/alerta.php");
             }else{
-                $alerta['mensaje'] = "La tratamiento no eliminada";
+                $alerta['mensaje'] = "El tratamiento no eliminada";
                 $alerta['tipo'] = "danger";
-                include_once("./Views/alert.php");
+                include_once("./Views/alerta.php");
             }
         }
         $data = $app -> read();

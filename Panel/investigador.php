@@ -1,62 +1,74 @@
 <?php
-require_once("../models/investigador.php");
+require_once("./Views/header.php");
+require_once("../Models/investigador.php");
+require_once("../Models/institucion.php");
+require_once("../Models/tratamiento.php");
 $app = new Investigador();
+$appInstitucion = new Institucion();
+$appTratamiento = new Tratamiento();
+$instituciones = $appInstitucion -> read();
+$tratamientos = $appTratamiento -> read();
 $action = isset($_GET['action']) ? $_GET['action'] : 'read';
 $data = array();
-include_once("./views/header.php");
+include_once("./Views/header.php");
 switch ($action) {
     case 'create':
         if (isset($_POST['enviar'])) {
             $data['primer_apellido'] = $_POST['primer_apellido'];
             $data['segundo_apellido'] = $_POST['segundo_apellido'];
             $data['nombre'] = $_POST['nombre'];
-            $data['fotografia'] = $_POST['fotografia'];
             $data['id_institucion'] = $_POST['id_institucion'];
             $data['semblance'] = $_POST['semblance'];
             $data['id_tratamiento'] = $_POST['id_tratamiento'];
             $row = $app -> create($data);
             if ($row){
-                $alerta['mensaje'] = "investigador dada de alta correctamente";
+                $alerta['mensaje'] = "Investigador dada de alta correctamente";
                 $alerta['tipo'] = "success";
-                include_once("./views/alert.php");
+                include_once("./Views/alerta.php");
             }else{
-                $alerta['mensaje'] = "La investigador no fue dada de alta";
+                $alerta['mensaje'] = "El investigador no fue dada de alta";
                 $alerta['tipo'] = "danger";
-                include_once("./views/alert.php");
+                include_once("./Views/alerta.php");
             }
             $data = $app -> read();
-            include_once("./views/investigador/index.php");
+            include_once("./Views/investigador/index.php");
         }else{
-            include_once("./views/investigador/_form.php");
+            include_once("./Views/investigador/_form.php");
         }
         break;
 
     case 'update':
+        //var_dump($_POST);
         if (isset($_POST['enviar'])) {
+            //var_dump($_POST);
             $data['primer_apellido'] = $_POST['primer_apellido'];
             $data['segundo_apellido'] = $_POST['segundo_apellido'];
             $data['nombre'] = $_POST['nombre'];
-            $data['fotografia'] = $_POST['fotografia'];
             $data['id_institucion'] = $_POST['id_institucion'];
             $data['semblance'] = $_POST['semblance'];
             $data['id_tratamiento'] = $_POST['id_tratamiento'];
+
+            if(empty($_FILES['fotografia']['name'])){
+                $data['fotografia'] = $_POST['fotografia_actual']; 
+            }
             $id = $_GET['id'];
             $row = $app -> update($data, $id); 
             if ($row){
-                $alerta['mensaje'] = "tratamiento modificada correctamente";
+                $alerta['mensaje'] = "Tratamiento modificada correctamente";
                 $alerta['tipo'] = "success";
-                include_once("./views/alert.php");
+                include_once("./Views/alerta.php");
             }else{
-                $alerta['mensaje'] = "La tratamiento no fue modificada";
+                $alerta['mensaje'] = "El tratamiento no fue modificada";
                 $alerta['tipo'] = "danger";
-                include_once("./views/alert.php");
+                include_once("./Views/alerta.php");
             }
             $data = $app -> read();
-            include_once("./views/investigador/index.php");
+            include_once("./Views/investigador/index.php");
         }else{
+            //var_dump($_GET);
             $id = $_GET['id'];
             $data = $app -> readOne($id);
-            include_once("./views/investigador/_form_update.php");
+            include_once("./Views/investigador/_form_update.php");
         }
         break;
 
@@ -65,24 +77,24 @@ switch ($action) {
             $id = $_GET['id'];
             $row = $app -> delete($id);
             if ($row){
-                $alerta['mensaje'] = "tratamiento eliminada correctamente";
+                $alerta['mensaje'] = "Investigador eliminada correctamente";
                 $alerta['tipo'] = "success";
-                include_once("./views/alert.php");
+                include_once("./Views/alerta.php");
             }else{
-                $alerta['mensaje'] = "La tratamiento no eliminada";
+                $alerta['mensaje'] = "El investigador no fue eliminado";
                 $alerta['tipo'] = "danger";
-                include_once("./views/alert.php");
+                include_once("./Views/alerta.php");
             }
         }
         $data = $app -> read();
-        include_once("./views/investigador/index.php");
+        include_once("./Views/investigador/index.php");
         break;
     
     case 'read':
     default:
         $data = $app -> read();
-        include_once("./views/investigador/index.php");
+        include_once("./Views/investigador/index.php");
         break;
 }
-include_once("./views/footer.php");
+include_once("./Views/footer.php");
 ?>

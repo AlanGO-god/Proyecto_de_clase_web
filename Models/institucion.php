@@ -4,7 +4,7 @@ require_once "sistema.php";
 class Institucion extends Sistema{
     function create($data){
         $this -> connect();
-        $this -> _BD -> beginTransaction();
+        $this -> _DB -> beginTransaction();
         try{
             $sql = "INSERT INTO  institucion (institucion,logotipo) VALUES(:institucion, :logotipo)";
             $sth = $this-> _DB -> prepare($sql);
@@ -13,7 +13,7 @@ class Institucion extends Sistema{
             $sth->execute();
             $rowsAffected = $sth->rowCount();
             $this -> _DB -> commit(); 
-            return $rowsAffected
+            return $rowsAffected;
         } catch (Exception $e){
             $this -> _DB -> rollBack();
             echo "Fallo: " . $e->getMessage();
@@ -31,7 +31,7 @@ class Institucion extends Sistema{
     function readOne($id){
         $this -> connect();
         $sth = $this-> _DB -> prepare("SELECT * FROM institucion
-        where id_institucion = :id_institucion");
+        WHERE id_institucion = :id_institucion");
         $sth ->bindParam(":id_institucion", $id,PDO::PARAM_INT);
         $sth->execute();
         $data = $sth -> fetch(PDO::FETCH_ASSOC);
@@ -42,7 +42,7 @@ class Institucion extends Sistema{
             return null;
         }
         if($this -> validate($data)){
-            $this -> connect()
+            $this -> connect();
             $this -> _DB -> beginTransaction();
             try{
                 $sql = "UPDATE institucion SET institucion = :institucion, logotipo = :logotipo WHERE id_institucion = :id_institucion";
@@ -53,7 +53,7 @@ class Institucion extends Sistema{
                 $sth->execute();
                 $rowsAffected = $sth->rowCount();
                 $this -> _DB -> commit(); 
-                return $rowsAffected
+                return $rowsAffected;
             } catch (Exception $e){
                 $this -> _DB -> rollBack();
                 echo "Fallo: " . $e->getMessage();
@@ -62,7 +62,7 @@ class Institucion extends Sistema{
         return null;
     }
     function delete($id){
-        if(!is_numeric($id)){
+        if(is_numeric($id)){
             $this -> connect();
             $this -> _DB -> beginTransaction();
             try{
@@ -84,7 +84,7 @@ class Institucion extends Sistema{
         
     }
 
-    funtion validate($data){
+    function validate($data){
         return true;
     }
 }

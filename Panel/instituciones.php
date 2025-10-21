@@ -50,13 +50,13 @@ switch ($action) {
        }else{
         $id = $_GET['id'];
         $data = $app -> readOne($id);
-       
         include_once("./Views/institucion/_form_update.php");
        }
         break;
 
     case 'delete':
         if(isset($_GET['id'])){
+            //var_dump($_GET);
             $id = $_GET['id'];
             $row = $app -> delete($id);
             if($row){
