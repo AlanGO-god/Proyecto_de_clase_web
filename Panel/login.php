@@ -9,12 +9,14 @@ switch($action){
         $app -> logout();
         break;
     case 'login':
+        var_dump($_POST);
         if(isset($_POST['enviar'])){
+            var_dump($_POST);
             $correo = $_POST['correo'];
             $contrasena = $_POST['contrasena'];
             $login = $app -> login($correo, $contrasena);
             if($login){
-                header("Location: ./panel/institucion.php");
+                require_once("./instituciones.php");
             }else{
                 $alert['mensaje'] = "Correo o contraseña incorrecta";
                 $alert['tipo'] = "danger";

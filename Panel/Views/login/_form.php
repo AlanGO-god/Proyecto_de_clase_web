@@ -1,4 +1,4 @@
-<form action="login.php?action=login" method="POST"></form>
+<form method="POST" action="login.php?action=login" >
 
 <div class="mb-3 row">
     <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
@@ -12,7 +12,7 @@
         <input name="contrasena" type="password" class="form-control" id="inputPassword">
     </div>
     <div class="mb-3">
-        <input type="submit" class="btn btn-primary" id="enviar" name="enviar" value="enviar">Entrar</input>
+        <input type="submit" class="btn btn-primary" id="enviar" name="enviar" value="Entrar"> 
     </div>
 </div>
 </form>

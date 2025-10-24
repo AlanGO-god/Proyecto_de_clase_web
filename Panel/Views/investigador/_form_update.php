@@ -12,6 +12,7 @@
         
         <label for="fotografia" class="form-label">Fotografía</label>
         <img src="/web/web_v2/images/investigadores/<?php echo $data{0}['fotografia']; ?>" alt="" style="width: 100px; height: auto;">
+        
         <input type="file" class="form-control" id="fotografia" name="fotografia" placeholder="foto.png">
         <input type="hidden" name="fotografia_actual" value="<?php echo $data{0}['fotografia']; ?>">
         

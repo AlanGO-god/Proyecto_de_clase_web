@@ -14,12 +14,7 @@ include_once("./Views/header.php");
 switch ($action) {
     case 'create':
         if (isset($_POST['enviar'])) {
-            $data['primer_apellido'] = $_POST['primer_apellido'];
-            $data['segundo_apellido'] = $_POST['segundo_apellido'];
-            $data['nombre'] = $_POST['nombre'];
-            $data['id_institucion'] = $_POST['id_institucion'];
-            $data['semblance'] = $_POST['semblance'];
-            $data['id_tratamiento'] = $_POST['id_tratamiento'];
+            $data = $_POST
             $row = $app -> create($data);
             if ($row){
                 $alerta['mensaje'] = "Investigador dada de alta correctamente";
@@ -41,16 +36,8 @@ switch ($action) {
         //var_dump($_POST);
         if (isset($_POST['enviar'])) {
             //var_dump($_POST);
-            $data['primer_apellido'] = $_POST['primer_apellido'];
-            $data['segundo_apellido'] = $_POST['segundo_apellido'];
-            $data['nombre'] = $_POST['nombre'];
-            $data['id_institucion'] = $_POST['id_institucion'];
-            $data['semblance'] = $_POST['semblance'];
-            $data['id_tratamiento'] = $_POST['id_tratamiento'];
-
-            if(empty($_FILES['fotografia']['name'])){
-                $data['fotografia'] = $_POST['fotografia_actual']; 
-            }
+            $data = $_POST;
+           
             $id = $_GET['id'];
             $row = $app -> update($data, $id); 
             if ($row){

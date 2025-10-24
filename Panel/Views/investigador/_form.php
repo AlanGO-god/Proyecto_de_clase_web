@@ -3,12 +3,23 @@
     <div class="mb-3">
         <label for="primer_apellido" class="form-label">Primer apellido</label>
         <input type="text" class="form-control" id="primer_apellido" name="primer_apellido" placeholder="Primer apellido" required>
+
         <label for="segundo_apellido" class="form-label">Segundo apellido</label>
         <input type="text" class="form-control" id="segundo_apellido" name="segundo_apellido" placeholder="Segundo apellido">
+
         <label for="investigador" class="form-label">Nombre del investigador</label>
         <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre" required>
+
+        <label for="investigador" class="form-label">Correo electronico</label>
+        <input type="email" class="form-control" id="correo" name="correo" placeholder="Correo" required>
+
+        <label for="password" class="form-label">Contraseña</label>
+        <input type="password" class="form-control" id="password" name="pasword" placeholder="Contrsena" required>
+
+
         <label for="fotografia" class="form-label">Fotografía</label>
         <input type="file" class="form-control" id="fotografia" name="fotografia" placeholder="foto.npg">
+
         <label for="id_institucion" class="form-label">Institución</label>
         <select class="form-select" id="id_institucion" name="id_institucion" required>
             <?php foreach ($instituciones as $institucion): ?>
