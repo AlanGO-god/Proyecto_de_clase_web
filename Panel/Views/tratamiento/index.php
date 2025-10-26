@@ -3,7 +3,7 @@
     <a href="tratamiento.php?action=create" class="btn btn-success">Nuevo</a>
     <a class="btn btn-primary">Imprimir</a>
 </div>
-<table class="table">
+<table class="table table-striped">
   <thead>
     <tr>
       <th scope="col">#</th>

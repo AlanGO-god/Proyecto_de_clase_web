@@ -44,7 +44,8 @@ class Sistema{
             $stml = $this->_DB->prepare($sql);
             $stml->bindParam(":correo", $correo, PDO::PARAM_STR);
             $stml->bindParam(":contrasena", $contrasena, PDO::PARAM_STR);
-            $result =$stml->execute();
+            $stml->execute();
+            $result = $stml->rowCount();
             if($result > 0){
                 $_SESSION['validado'] = true;
                 $_SESSION['correo'] = $correo;

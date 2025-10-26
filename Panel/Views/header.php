@@ -27,7 +27,6 @@
             <li><a class="dropdown-item" href="tratamiento.php">Tratamientos</a></li>
             <li><a class="dropdown-item" href="investigador.php">Investigadores</a></li>
             <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
           </ul>
         </li>
         <li class="nav-item">
@@ -42,7 +41,6 @@
             <li><a class="dropdown-item" href="roles.php">Roles</a></li>
             <li><a class="dropdown-item" href="privilegios.php">Privilegios</a></li>
             <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
           </ul>
         </li>
       </ul>

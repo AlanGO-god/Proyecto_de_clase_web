@@ -1,5 +1,6 @@
 <?php
 include_once("sistema.php");
+
 class Usuario extends Sistema {
     function create($data){
         $this -> connect();
@@ -21,7 +22,7 @@ class Usuario extends Sistema {
         return $data;
     }
 
-    funtion readOne($id) {
+    function readOne($id) {
         $this -> connect();
         $sth = $this -> _DB -> prepare("SELECT * FROM usuario WHERE id_usuario = :id_usuario");
         $sth -> bindParam(":id_usuario", $id, PDO::PARAM_INT);
@@ -30,7 +31,7 @@ class Usuario extends Sistema {
         return $data;
     }
 
-    funtion update($data, $id) {
+    function update($data, $id) {
         $this -> connect();
         $sql = "UPDATE usuario SET correo = :correo, contrasena = :contrasena WHERE id_usuario = :id_usuario";
         $sth = $this -> _DB -> prepare($sql);
@@ -43,7 +44,7 @@ class Usuario extends Sistema {
         return $rowsAffected;
     }
 
-    funtion delete($id) {
+    function delete($id) {
         $this -> connect();
         $sql = "DELETE FROM usuario WHERE id_usuario = :id_usuario";
         $sth = $this -> _DB -> prepare($sql);
@@ -51,5 +52,6 @@ class Usuario extends Sistema {
         $sth -> execute();
         $rowsAffected = $sth -> rowCount();
         return $rowsAffected;
+    }
 }
 ?>

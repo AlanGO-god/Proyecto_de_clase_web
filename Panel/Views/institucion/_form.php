@@ -1,5 +1,5 @@
 <h1>Nueva Institucion</h1>
-<form method="post" action="instituciones.php?action=create">
+<form method="POST" action="instituciones.php?action=create">
     <div class="mb-3">
         <label for="Institucion" class="form-label">Nombre de la Institucion</label>
         <input type="text" class="form-control" id="institucion" name="institucion"

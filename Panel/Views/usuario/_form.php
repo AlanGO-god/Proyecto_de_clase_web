@@ -1,5 +1,5 @@
 <h1> Nuevo usuario</h1>
-<form method="POST" action="usuario.php?action=create">
+<form method="POST" action="usuarios.php?action=create">
     <div class="mb-3">
         <label for="correo" class="form-label">Correo electrónico</label>
         <input type="email" class="form-control" id="correo" name="correo" placeholder="Escribe el correo electrónico" required>

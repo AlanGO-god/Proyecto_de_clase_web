@@ -1,9 +1,9 @@
 <?php
-include_once("./Views/header.php");
-require_once("../models/institucion.php");
+require_once("../Models/institucion.php");
 $app = new Institucion();
 $action = isset($_GET['action']) ? $_GET['action'] : 'read';
 $data = array();
+include_once("./Views/header.php");
 switch ($action) {
     case 'create':
          var_dump($_POST);
