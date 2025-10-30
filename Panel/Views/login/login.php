@@ -14,5 +14,8 @@
     <div class="mb-3">
         <input type="submit" class="btn btn-primary" id="enviar" name="enviar" value="Entrar"> 
     </div>
+    <div>
+        <a href="login.php?action=recuperar">Regcuperar contrasena</a>
+    </div>
 </div>
 </form>

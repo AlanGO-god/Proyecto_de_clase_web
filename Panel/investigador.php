@@ -36,6 +36,7 @@ switch ($action) {
         if (isset($_POST['enviar'])) {
             //var_dump($_POST);
             $data = $_POST;
+           
             $id = $_GET['id'];
             $row = $app -> update($data, $id); 
             if ($row){

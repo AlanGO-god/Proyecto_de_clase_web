@@ -20,36 +20,51 @@ class Investigador extends Sistema{
             $sth -> bindParam(":fotografia", $fotografia, PDO::PARAM_STR);
             $sth -> execute();
             $rowsAffected = $sth -> rowCount();
+
             $sql = "INSERT INTO usuario(correo, contrasena) VALUES (:correo, :contrasena)";
             $sth = $this -> _DB -> prepare($sql);
             $sth -> bindParam(":correo", $data['correo'], PDO::PARAM_STR);
-            $pwd -> md5($data['contrasena']);
+            $pwd = md5($data['contrasena']);
             $sth -> bindParam(":contrasena", $pwd, PDO::PARAM_STR);
             $sth -> execute();
+
             $sql = "SELECT * FROM usuario WHERE correo = :correo";
             $sth = $this -> _DB -> prepare($sql);
             $sth -> bindParam(":correo", $data['correo'], PDO::PARAM_STR);
             $sth -> execute();
             $user = $sth -> fetch(PDO::FETCH_ASSOC);
             $id_usuario = $user['id_usuario'];
-            $sql = "INSERT INTO uruario_role(id_rol, id_usuario) VALUES (2, :id_usuario)";
+
+            
+
+            $sql = "INSERT INTO usuario_rol(id_rol, id_usuario) VALUES (2, :id_usuario)";
             $sth = $this -> _DB -> prepare($sql);
             $sth -> bindParam(":id_usuario", $id_usuario, PDO::PARAM_INT);
-            $sth -> execute();
+            $sth->execute();
+
             $sql = "SELECT * FROM investigador ORDER BY id_investigador DESC LIMIT 1";
             $sth = $this -> _DB -> prepare($sql);
             $sth -> execute();
             $investigador = $sth -> fetch(PDO::FETCH_ASSOC);
             $id_investigador = $investigador['id_investigador'];
+
             $sql = "UPDATE investigador SET id_usuario = :id_usuario WHERE id_investigador = :id_investigador";
+            $sth = $this -> _DB -> prepare($sql);
             $sth -> bindParam(":id_usuario", $id_usuario, PDO::PARAM_INT);
             $sth -> bindParam(":id_investigador", $id_investigador, PDO::PARAM_INT);
             $sth -> execute();
+
+            $para = $data['correo'];
+            $asunto = "Cuenta creada - Red de Investigación";
+            $cuerpo = "Su cuenta ha sido creada exitosamente." . "<br>Correo: " . $data['correo'] . "<br>Contraseña: " . $data['contrasena'] . "<br>Atentamente Red de Investigación.";
+            $nombre = $data['nombre']." ". $data['primer_apellido']. " ". $data['segundo_apellido'];
+            $email = $this -> enviarCorreo($para, $asunto, $cuerpo, $nombre);
 
 
             $this -> _DB ->commit();
             return $rowsAffected;
         } catch (Exception $ex) {
+            echo "Error en create: " . $ex->getMessage();
             $this -> _DB ->rollback();
         }
         return null;
@@ -71,7 +86,7 @@ class Investigador extends Sistema{
         WHERE id_investigador = :id_investigador");
         $sth -> bindParam(":id_investigador", $id, PDO::PARAM_INT);
         $sth -> execute();
-        $data = $sth -> fetchAll();
+        $data = $sth -> fetch(PDO::FETCH_ASSOC);
         return $data;
     }
 
@@ -90,7 +105,6 @@ class Investigador extends Sistema{
                     $sql = "UPDATE investigador SET primer_apellido = :primer_apellido, 
                     segundo_apellido = :segundo_apellido, nombre = :nombre, fotografia = :fotografia, id_institucion = :id_institucion, 
                     semblance = :semblance, id_tratamiento = :id_tratamiento WHERE id_investigador = :id_investigador";
-                    $fotografia = $this -> cargarFotoGrafia('investigadores','fotografia');
                 }
             }
             $sth = $this->_DB->prepare($sql);

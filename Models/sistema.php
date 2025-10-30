@@ -1,5 +1,8 @@
 <?php
 session_start();
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+
 class Sistema{
     var $_DNS = 'mysql:host=mariadb;dbname=database';
     var $_USER =  'user';
@@ -37,8 +40,10 @@ class Sistema{
     }
     
     public function login($correo, $contrasena){
+        //echo "Dentro del login";
         $contrasena = md5($contrasena);
         if(filter_var($correo, FILTER_VALIDATE_EMAIL)){
+            //echo "Dentro del filtro";
             $this->connect();
             $sql = "SELECT * FROM usuario WHERE correo = :correo AND contrasena = :contrasena";
             $stml = $this->_DB->prepare($sql);
@@ -59,7 +64,6 @@ class Sistema{
     }
 
     public function logout(){
-        session_start();
         unset($_SESSION);
         session_destroy();   
     }
@@ -101,6 +105,89 @@ class Sistema{
             }   
         }
         return $permisos;
+    }
+
+     function checkRoll($rol){
+        $roles = isset($_SESSION['rol']) ? $_SESSION['rol'] : array();
+        if(!in_array($rol, $roles)){
+            $alerta['mensaje'] = "Usted no tiene el rol adecuado";
+            $alerta['tipo'] = "danger";
+            include_once("./views/error.php");
+            die();
+        }
+        return false;
+    }
+
+    public function enviarCorreo($para, $asunto, $cuerpo,$nombre = null){
+        require '../vendor/autoload.php';
+        $mail = new PHPMailer();
+        $mail->isSMTP();
+        $mail->SMTPDebug = SMTP::DEBUG_OFF;
+        $mail->Host = 'smtp.gmail.com';
+        $mail->Port = 465;
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
+        $mail->SMTPAuth = true;
+        $mail->Username = '22030184@itcelaya.edu.mx';
+        $mail->Password = 'bdvzleezbxddzcrp';
+        $mail->setFrom('22030184@itcelaya.edu.mx', 'Alan Guiterrez Ortega');
+        $mail->addAddress($para,$nombre ? $nombre : 'Red de Investigación');
+        $mail->Subject = $asunto;
+        $mail->msgHTML($cuerpo);
+        if (!$mail->send()) {
+            return false;
+            } else {
+            return true;
+            }
+    }
+
+    public function cabiarContrasena($data){
+        if(!filter_var($data['correo'], FILTER_VALIDATE_EMAIL)){
+            return false;
+        }
+        $this -> connect();
+        $token = bin2hex(random_bytes(16));
+        $token = md5($token);
+        $token = $token.md5("Cruz Azul Campion de America");
+        $sql = "UPDATE usuario SET token = :token WHERE correo = :correo";
+        $sth = $this -> _DB -> prepare($sql);
+        $sth -> bindParam(":token", $token, PDO::PARAM_STR);
+        $sth -> bindParam(":correo", $data['correo'], PDO::PARAM_STR);
+        $resultado = $sth -> execute();
+        if($sth -> rowCount()){
+            $para = $data['correo'];
+            $asunto = "Recuperación de contraseña - Red de Investigación";
+            $mensaje = "Para recuperar su contraseña haga clic en el siguiente enlace: <br><br>
+            <a href='http://localhost:8080/Panel/login.php?action=token&token=" .$token. "&correo=" .$data['correo']. "'>Recuperar contraseña</a><br>
+            Atentamente Red de Investigación.";
+            $mail = $this -> enviarCorreo($para, $asunto, $mensaje, null);
+            return true;
+        }else{
+            return false;
+        }        
+    }
+
+    public function restablecerContrasena($data){
+        //echo "Dentro del restablecer";
+        //echo $data['correo'];
+        //echo $data['token'];
+    
+        $this -> connect();
+        $sql = "SELECT * FROM usuario WHERE token = :token";
+        $sth = $this -> _DB -> prepare($sql);
+        $sth -> bindParam(":token", $data['token'], PDO::PARAM_STR);
+        $sth -> execute();
+        if($sth -> rowCount() > 0){
+            $contrasena = md5($data['contrasena']);
+            $sql = "UPDATE usuario SET contrasena = :contrasena, token = null WHERE token = :token";
+            $sth = $this -> _DB -> prepare($sql);
+            $sth -> bindParam(":contrasena", $contrasena, PDO::PARAM_STR);
+            $sth -> bindParam(":token", $data['token'], PDO::PARAM_STR);
+            $sth -> execute();
+            if($sth -> rowCount() > 0){
+                return true;
+            }
+        }
+        return false;
     }
 }
 ?>
