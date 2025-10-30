@@ -128,7 +128,7 @@ class Sistema{
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
         $mail->SMTPAuth = true;
         $mail->Username = '22030184@itcelaya.edu.mx';
-        $mail->Password = 'bdvzleezbxddzcrp';
+        $mail->Password = '';
         $mail->setFrom('22030184@itcelaya.edu.mx', 'Alan Guiterrez Ortega');
         $mail->addAddress($para,$nombre ? $nombre : 'Red de Investigación');
         $mail->Subject = $asunto;
